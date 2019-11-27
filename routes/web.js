@@ -13,6 +13,7 @@ router.get("/admin/dashboard", AdminController.getDashboard);
 //User
 router.get("/admin/user/list", UserController.getList);
 router.get("/admin/user/add", UserController.getAdd);
+router.post("/admin/user/add", UserController.postAdd);
 router.post("/admin/user/add", UserController.postUser);
 router.get("/admin/user/edit", UserController.getEdit);
 router.get("/admin/user/del", UserController.getDel);

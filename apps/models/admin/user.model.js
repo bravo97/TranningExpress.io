@@ -19,11 +19,11 @@ const UserModel = mongoose.model("User", shemaUser, "user")
 // })
 
 //Them moi du lieu
-// UserInsert = new UserModel({
+//UserInsert = new UserModel({
 //     user_full:"Hùng đẹp trai",
-//     user_mail:"dobahung941997@gmail.com",
-//     user_pass:"1997",
-//     user_level:1
+//     user_mail:"halan18101994@gmail.com",
+//     user_pass:"1994",
+//     user_level:2
 // })
 // UserInsert.save();
 

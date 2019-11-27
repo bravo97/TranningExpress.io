@@ -19,7 +19,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="col-md-8">
-                            	<div class="alert alert-danger">Email đã tồn tại !</div>
+                                <% if(data && data.error){ console.log(data.error)%>
+                                    <div class="alert alert-danger"><%= data.error%></div>
+                                <%}%>
                                 <form role="form" method="post">
                                 <div class="form-group">
                                     <label>Họ & Tên</label>
