@@ -16,6 +16,7 @@ router.get("/admin/user/add", UserController.getAdd);
 router.post("/admin/user/add", UserController.postAdd);
 router.post("/admin/user/add", UserController.postUser);
 router.get("/admin/user/edit", UserController.getEdit);
+router.post("/admin/user/edit", UserController.postEdit);
 router.get("/admin/user/del", UserController.getDel);
 
 //Categoty

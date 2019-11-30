@@ -52,13 +52,32 @@ function postAdd(req,res){
 
 function getEdit(req,res){
     _id = req.query._id
-
-    console.log("_id:ObjectId('" +_id +"')")
-    UserModel.find({"_id":"ObjectId('"+_id+"')"},function(er,docs){
-        console.log(docs)
+    UserModel.findOne({_id:_id},function(er,docs){
+        res.render("admin/edit_user",{data:{data:docs}});  
     })
-    res.render("admin/edit_user");
+    
 };
+
+function postEdit(req,res){
+    _id=req.query._id
+    name= req.body.user_full,
+    mail= req.body.user_mail,
+    pass= req.body.user_pass,
+    re_pass = req.body.user_re_pass,
+    level = req.body.user_level
+
+    // console.log(_id,name,mail,pass,re_pass,level);
+    UserModel.update({_id:_id},{$set:{
+        user_full:name,
+        user_mail:mail,
+        user_pass:pass,
+        user_level:level
+    }},function(err,docs){
+        res.redirect("/list");
+    })
+
+
+}
 
 function getDel(req,res){
     res.send("User Delete");
@@ -75,6 +94,7 @@ module.exports = {
     getDel:getDel,
 
     postUser:postUser,
-    postAdd:postAdd
+    postAdd:postAdd,
+    postEdit:postEdit
 };
 
