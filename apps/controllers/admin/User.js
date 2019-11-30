@@ -1,7 +1,10 @@
 const UserModel = require("../../models/admin/user.model");
 
 function getList(req,res){
-    res.render("admin/user");
+    UserModel.find({},function(err,docs){
+        res.render("admin/user",{data:{data:docs}});
+    }).limit(2).skip(2)
+    
 };
 
 function getAdd(req,res){
@@ -48,6 +51,12 @@ function postAdd(req,res){
 };
 
 function getEdit(req,res){
+    _id = req.query._id
+
+    console.log("_id:ObjectId('" +_id +"')")
+    UserModel.find({"_id":"ObjectId('"+_id+"')"},function(er,docs){
+        console.log(docs)
+    })
     res.render("admin/edit_user");
 };
 
@@ -68,3 +77,4 @@ module.exports = {
     postUser:postUser,
     postAdd:postAdd
 };
+

@@ -1,3 +1,5 @@
+const categoryModel = require("../../models/admin/category_model")
+
 function getList(req,res){
     res.render("admin/category");
 };

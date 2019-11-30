@@ -60,10 +60,12 @@
                                 <div class="form-group">
                                     <label>Danh mục</label>
                                     <select name="cat_id" class="form-control">
-                                        <option value=1>iPhone</option>
-                                        <option value=2>Samsung</option>
+                                    <% for(const docs of data.data){ console.log(docs) %>   
+                                        <option value=`<%= docs._id %>`</option><%= docs.cat_name %></option>
+                                        <!-- <option value=2>Samsung</option>
                                         <option value=3>Nokia</option>
-                                        <option value=4>LG</option>
+                                        <option value=4>LG</option> -->
+                                    <%}%>
                                     </select>
                                 </div>
                                 

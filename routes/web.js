@@ -28,6 +28,7 @@ router.get("/admin/category/del", CategoryController.getDel);
 //Product
 router.get("/admin/product/list", ProductController.getList);
 router.get("/admin/product/add", ProductController.getAdd);
+router.post("/admin/product/add", ProductController.postAdd);
 router.get("/admin/product/edit", ProductController.getEdit);
 router.get("/admin/product/del", ProductController.getDel);
 
