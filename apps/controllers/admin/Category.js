@@ -1,7 +1,12 @@
 const categoryModel = require("../../models/admin/category.model");
-
 function getList(req,res){
-    res.render("admin/category");
+    categoryModel.find({},function(err,docs){
+        if(err==null){
+            console.log(docs);
+            res.render("admin/category",{data:{data:docs}});
+        }
+    })
+    
 };
 
 function getAdd(req,res){
@@ -12,18 +17,17 @@ function getAdd(req,res){
 function postAdd(req,res){
     cat_name=req.body.cat_name
     let error
-    if(cat_name == null){
-        error="Vui lòng nhập tên cho danh mục!"
-        res.render("/admin/category/add",{data:{error:error}})
-    }
-    else{
+    // if(cat_name == null){
+    //     error="Vui lòng nhập tên cho danh mục!"
+    //     res.render("/admin/category/add",{data:{error:error}})
+    // }
+    // else{
         categoryModel.find({cat_name:cat_name},(err,docs)=>{
             if(err != null){
                 error = err
                 res.render("admin/category/add",{data:{error:error}})
             }
             else{
-                console.log(docs.length)
                 if(docs.length == 0){
                     categoryInsert = new categoryModel({
                         cat_name:cat_name
@@ -36,11 +40,15 @@ function postAdd(req,res){
                 }
             }
         })
-    }
 }
 
 function getEdit(req,res){
-    res.render("admin/edit_category");
+    _id = req.query._id
+
+    categoryModel.findOne({_id:_id},function(err,docs){
+        res.render("admin/edit_category",{data:{data:docs}});
+    })
+    
 };
 
 function getDel(req,res){

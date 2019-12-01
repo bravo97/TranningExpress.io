@@ -1,10 +1,10 @@
 const UserModel = require("../../models/admin/user.model");
 
 function getList(req,res){
+    pageNum = req.query.pageNum
     UserModel.find({},function(err,docs){
-        //console.log(docs);
         res.render("admin/user",{data:{data:docs}});
-    })
+    }).limit(4).skip(1*pageNum)
 };
 
 function getAdd(req,res){
@@ -40,7 +40,7 @@ function postAdd(req,res){
                 userInsert.save(function(err){
                     console.log(err);
                     if(err == null){
-                        res.redirect("/admin/user/list");
+                        res.redirect("list");
                     }
                 });
 
@@ -51,27 +51,38 @@ function postAdd(req,res){
 };
 
 function getEdit(req,res){
-    console.log("getedit");
-    console.log(res.on.body.lala)
-    
-
-    res.render("admin/edit_user");
+    _id = req.query._id
+    UserModel.findOne({_id:_id},function(er,docs){
+        res.render("admin/edit_user",{data:{data:docs}});  
+    })
 };
 
 function postEdit(req,res){
-    console.log("postEdit");
-    console.log(req.body.lala);
-    
+    _id=req.query._id
+    name= req.body.user_full,
+    mail= req.body.user_mail,
+    pass= req.body.user_pass,
+    re_pass = req.body.user_re_pass,
+    level = req.body.user_level
 
-    res.render("admin/edit_user");
-};
+    // console.log(_id,name,mail,pass,re_pass,level);
+    UserModel.update({_id:_id},{$set:{
+        user_full:name,
+        user_mail:mail,
+        user_pass:pass,
+        user_level:level
+    }},function(err,docs){
+        res.redirect("back");
+    })
+}
 
 function getDel(req,res){
-    res.send("User Delete");
-};
-
-function postUser(req,res){
-    res.render("admin/user");
+    _id = req.query._id
+    UserModel.remove({_id:_id},function(err,docs){
+        if(err==null){
+            res.redirect("back");
+        }
+    })
 };
 
 module.exports = {
@@ -80,7 +91,7 @@ module.exports = {
     getEdit:getEdit,
     getDel:getDel,
 
-    postUser:postUser,
     postAdd:postAdd,
     postEdit:postEdit
 };
+

@@ -14,7 +14,6 @@ router.get("/admin/dashboard", AdminController.getDashboard);
 router.get("/admin/user/list", UserController.getList);
 router.get("/admin/user/add", UserController.getAdd);
 router.post("/admin/user/add", UserController.postAdd);
-router.post("/admin/user/add", UserController.postUser);
 router.get("/admin/user/edit", UserController.getEdit);
 router.post("/admin/user/edit", UserController.postEdit);
 router.get("/admin/user/del", UserController.getDel);
@@ -29,6 +28,7 @@ router.get("/admin/category/del", CategoryController.getDel);
 //Product
 router.get("/admin/product/list", ProductController.getList);
 router.get("/admin/product/add", ProductController.getAdd);
+router.post("/admin/product/add", ProductController.postAdd);
 router.get("/admin/product/edit", ProductController.getEdit);
 router.get("/admin/product/del", ProductController.getDel);
 
