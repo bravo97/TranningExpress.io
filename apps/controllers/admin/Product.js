@@ -1,5 +1,14 @@
-function getList(req,res){
-    res.render("admin/product");
+const CategoryModel = require("../../models/admin/category.model")
+const ProductModel= require("../../models/admin/product.model")
+
+async function getList(req,res){
+    let products = await ProductModel.find().populate("categories");
+    products = JSON.parse(JSON.stringify(products));
+    
+    // for(values in products){
+    //     console.log(products[values].categories[0].cat_name);
+    // }
+    res.render("admin/product",{data:{products:products}});
 };
 
 function getAdd(req,res){

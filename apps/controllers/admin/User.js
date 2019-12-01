@@ -1,7 +1,10 @@
 const UserModel = require("../../models/admin/user.model");
 
 function getList(req,res){
-    res.render("admin/user");
+    UserModel.find({},function(err,docs){
+        //console.log(docs);
+        res.render("admin/user",{data:{data:docs}});
+    })
 };
 
 function getAdd(req,res){
@@ -26,7 +29,7 @@ function postAdd(req,res){
             if(docs.length>0){
                 error="Email đã tồn tại! Vui lòng nhập email khác!";
                 res.render("/admin/user/add",{data:{error:error}});
-            }
+            } 
             else{
                 userInsert = new UserModel({
                     user_full:name,
@@ -37,7 +40,7 @@ function postAdd(req,res){
                 userInsert.save(function(err){
                     console.log(err);
                     if(err == null){
-                        res.redirect("/list");
+                        res.redirect("/admin/user/list");
                     }
                 });
 
@@ -48,6 +51,18 @@ function postAdd(req,res){
 };
 
 function getEdit(req,res){
+    console.log("getedit");
+    console.log(res.on.body.lala)
+    
+
+    res.render("admin/edit_user");
+};
+
+function postEdit(req,res){
+    console.log("postEdit");
+    console.log(req.body.lala);
+    
+
     res.render("admin/edit_user");
 };
 
@@ -66,5 +81,6 @@ module.exports = {
     getDel:getDel,
 
     postUser:postUser,
-    postAdd:postAdd
+    postAdd:postAdd,
+    postEdit:postEdit
 };

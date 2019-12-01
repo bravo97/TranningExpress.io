@@ -38,30 +38,21 @@
 						    </tr>
                             </thead>
                             <tbody>
+                                <% var count=1 %>
+                                <% for(values in data.products){%>
                                     <tr>
-                                        <td style="">1</td>
-                                        <td style="">Sản phẩm số 1</td>
-                                        <td style="">18.500.000 vnd</td>
-                                        <td style="text-align: center"><img width="130" height="180" src="img/download.jpeg" /></td>
-                                        <td><span class="label label-success">Còn hàng</span></td>
-                                        <td>Danh mục số 1</td>
+                                        <td style=""><%= count++%></td>
+                                        <td style=""><%= data.products[values].prd_name%></td>
+                                        <td style=""><%= data.products[values].prd_price%></td>
+                                        <td style="text-align: center"><img width="130" height="180" src="/static/images/products/<%= data.products[values].prd_image%>"></td>
+                                        <td><span class="label label-<%if(data.products[values].prd_status ==1){%>success<%} else{%>danger<%}%>"><%if(data.products[values].prd_status ==1){%> Còn hàng <%} else{%> Hết hàng <%}%></span></td>
+                                        <td><%= data.products[values].categories[0].cat_name%></td>
                                         <td class="form-group">
                                             <a href="product-edit.html" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
                                             <a href="product-edit.html" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                            <td style="">1</td>
-                                            <td style="">Sản phẩm số 2</td>
-                                            <td style="">18.500.000 vnd</td>
-                                            <td style="text-align: center"><img width="130" height="180" src="img/download.jpeg" /></td>
-                                            <td><span class="label label-danger">Hết hàng</span></td>
-                                            <td>Danh mục số 1</td>
-                                            <td class="form-group">
-                                                <a href="product-edit.html" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a>
-                                                <a href="product-edit.html" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                                            </td>
-                                        </tr>
+                                <%}%>
                                  </tbody>
 						</table>
                     </div>
@@ -81,8 +72,8 @@
 		</div><!--/.row-->	
 	</div>	<!--/.main-->
 
-	<script src="/static/admin/js/jquery-1.11.1.min.js"></script>
-	<script src="/static/admin/js/bootstrap.min.js"></script>
-    <script src="/static/admin/js/bootstrap-table.js"></script>	
+	<script src="/static/theme/admin/js/jquery-1.11.1.min.js"></script>
+	<script src="/static/theme/admin/js/bootstrap.min.js"></script>
+    <script src="/static/theme/admin/js/bootstrap-table.js"></script>	
 
     <% include layout/footer %>

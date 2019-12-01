@@ -16,12 +16,13 @@ router.get("/admin/user/add", UserController.getAdd);
 router.post("/admin/user/add", UserController.postAdd);
 router.post("/admin/user/add", UserController.postUser);
 router.get("/admin/user/edit", UserController.getEdit);
+router.post("/admin/user/edit", UserController.postEdit);
 router.get("/admin/user/del", UserController.getDel);
 
 //Categoty
 router.get("/admin/category/list", CategoryController.getList);
 router.get("/admin/category/add", CategoryController.getAdd);
-router.post("/admin/category/add", CategoryController.getAdd);
+router.post("/admin/category/add", CategoryController.postAdd);
 router.get("/admin/category/edit", CategoryController.getEdit);
 router.get("/admin/category/del", CategoryController.getDel);
 

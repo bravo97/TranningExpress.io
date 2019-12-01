@@ -9,9 +9,15 @@ const schemaProduct = new mongoose.Schema({
     prd_accessories:String,
     prd_new:String,
     prd_promotion:String,
-    prd_status:String,
+    prd_status:Number,
     prd_featured:Number,
     prd_details: String
+},{toJSON:{virtuals:true}})
+
+schemaProduct.virtual("categories",{
+    ref:"Category",
+    localField:'cat_id',
+    foreignField:"_id"
 })
 
 const ProductModel = mongoose.model("Product",schemaProduct,"product")
